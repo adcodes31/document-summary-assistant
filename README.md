@@ -76,12 +76,4 @@ The application is built with Next.js and can be easily deployed to platforms li
 3. Add the `GEMINI_API_KEY` to the Environment Variables section in Vercel settings.
 4. Click Deploy.
 
-## Limitations
-- **PDF Parsing:** Image-only PDFs (scanned documents saved directly as PDF without a text layer) will fail traditional text extraction. A more advanced pipeline (e.g., converting PDF pages to images then running OCR) would be needed for production-grade scanned PDFs.
-- **OCR Speed:** Running Tesseract.js in a Node environment for large images takes time; edge cases or poor quality scans may yield garbage text.
-- **Token Limits:** Very large documents are truncated before sending to the LLM to fit within typical token context windows and API rate limits.
 
-## Future Improvements
-- Implement a worker queue (e.g., BullMQ) or WebHooks for long-running document processing instead of keeping HTTP requests open.
-- Add support for Word documents (`.docx`).
-- Use a dedicated vision model (like Gemini 1.5 Pro natively) to bypass manual OCR and handle complex layout parsing (tables, charts) directly.
