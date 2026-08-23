@@ -15,8 +15,7 @@
     "pdf-parse": "^2.4.5",
     "pdf2json": "^4.0.3",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "tesseract.js": "^7.0.0"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@types/node": "^20",

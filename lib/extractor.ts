@@ -1,4 +1,4 @@
-import Tesseract from "tesseract.js";
+import { GoogleGenAI } from "@google/genai";
 
 /**
  * Extracts text from a PDF buffer.
@@ -41,22 +41,30 @@ export async function extractPdfText(buffer: Buffer): Promise<string> {
 }
 
 /**
- * Extracts text from an image buffer using OCR.
+ * Extracts text from an image buffer using Gemini Native Vision OCR.
+ * This completely bypasses the tesseract.js Vercel serverless limitations.
  */
 export async function extractImageText(buffer: Buffer, mimeType: string): Promise<string> {
   try {
-    // Tesseract handles buffers well
-    const result = await Tesseract.recognize(
-      buffer,
-      'eng',
-      { 
-        logger: m => {} // suppress logs
-      }
-    );
+    const ai = new GoogleGenAI({}); 
+    const prompt = "Extract all the readable text from this image exactly as it appears. Do not summarize it. If there is absolutely no text, reply exactly with 'NO_TEXT_FOUND'.";
     
-    const text = result.data.text.trim();
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: [
+        {
+          role: "user",
+          parts: [
+            { text: prompt },
+            { inlineData: { data: buffer.toString("base64"), mimeType } }
+          ]
+        }
+      ]
+    });
     
-    if (!text || text.length < 20) {
+    const text = response.text?.trim() || "";
+    
+    if (text.includes("NO_TEXT_FOUND") || text.length < 10) {
       throw new Error("Unable to read text from this image. Please ensure the document is clearly visible.");
     }
     
