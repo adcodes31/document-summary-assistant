@@ -106,6 +106,7 @@ export default function Home() {
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const formatFileSize = (bytes: number) => {
@@ -185,7 +186,7 @@ export default function Home() {
           <div className={styles.navContainer}>
             <div className={styles.navLogo}>
               <div className={styles.logoIcon}>
-                <FileCheck2 size={18} strokeWidth={2.5} />
+                <FileCheck2 size={20} strokeWidth={2} />
               </div>
               <span className={styles.logoText}>Document Summary Assistant</span>
             </div>
@@ -200,8 +201,8 @@ export default function Home() {
           <section className={styles.heroSection}>
             <div className={styles.heroContent}>
               <span className={styles.eyebrow}>DOCUMENT INTELLIGENCE</span>
-              <h1 className={styles.headline}>Turn lengthy documents into clear, useful insights.</h1>
-              <p className={styles.subheadline}>Upload a PDF or image and get a structured summary, key points, and the ideas that matter.</p>
+              <h1 className={styles.headline}>Turn lengthy documents into clear insights.</h1>
+              <p className={styles.subheadline}>Upload a PDF or image and get a structured summary, key takeaways, and the ideas that matter.</p>
               
               <div className={styles.uploadContainer}>
                 <div 
@@ -213,18 +214,18 @@ export default function Home() {
                   onClick={onUploadClick}
                 >
                   <div className={styles.uploadIconWrapper}>
-                    <UploadCloud size={24} className={styles.uploadIconSVG} />
+                    <UploadCloud size={28} className={styles.uploadIconSVG} strokeWidth={1.5} />
                   </div>
                   <h3 className={styles.uploadTitle}>
-                    {dragActive ? "Drop it here" : "Upload your document"}
+                    {dragActive ? "Drop it here" : "Drop your document here"}
                   </h3>
                   <p className={styles.uploadSubtitle}>
-                    Drag & drop your PDF or image here
+                    or choose a file from your device
                   </p>
                   <div className={styles.uploadMeta}>
                     <span>PDF · JPG · PNG</span>
                     <span className={styles.metaDot}>·</span>
-                    <span>Maximum 10 MB</span>
+                    <span>Up to 10 MB</span>
                   </div>
                   <button className={styles.btnUpload} onClick={(e) => { e.stopPropagation(); onUploadClick(); }}>
                     Choose document
@@ -241,25 +242,23 @@ export default function Home() {
             </div>
           </section>
 
-          {/* USE CASES SECTION */}
+          {/* VALUE / USE CASES SECTION */}
           <section className={styles.useCasesSection}>
             <div className={styles.sectionContainer}>
-              <div className={styles.sectionHeader}>
-                <h2 className={styles.sectionTitle}>Built for documents that take too long to read</h2>
+              <div className={styles.sectionHeaderCentered}>
+                <h2 className={styles.sectionTitle}>Read less. Understand more.</h2>
+                <p className={styles.sectionSubtitle}>Built for documents that take too long to read.</p>
               </div>
               <div className={styles.useCasesGrid}>
                 <div className={styles.useCaseCard}>
-                  <div className={styles.useCaseIcon}><FileText size={20} /></div>
                   <h3 className={styles.useCaseTitle}>Research papers</h3>
                   <p className={styles.useCaseText}>Quickly understand methodology, findings, and conclusions without reading every page.</p>
                 </div>
                 <div className={styles.useCaseCard}>
-                  <div className={styles.useCaseIcon}><AlignLeft size={20} /></div>
-                  <h3 className={styles.useCaseTitle}>Long Reports</h3>
+                  <h3 className={styles.useCaseTitle}>Reports</h3>
                   <p className={styles.useCaseText}>Extract important findings, metrics, and recommendations instantly.</p>
                 </div>
                 <div className={styles.useCaseCard}>
-                  <div className={styles.useCaseIcon}><Shield size={20} /></div>
                   <h3 className={styles.useCaseTitle}>Contracts</h3>
                   <p className={styles.useCaseText}>Identify important clauses, obligations, and deadlines at a glance.</p>
                 </div>
@@ -271,60 +270,70 @@ export default function Home() {
           <section id="how-it-works" className={styles.howItWorksSection}>
             <div className={styles.sectionContainer}>
               <div className={styles.sectionHeaderCentered}>
-                <h2 className={styles.sectionTitle}>From upload to insight</h2>
+                <h2 className={styles.sectionTitle}>From document to insight</h2>
                 <p className={styles.sectionSubtitle}>A seamless process designed to save you hours of reading time.</p>
               </div>
               
               <div className={styles.workflowGrid}>
                 <div className={styles.workflowStep}>
-                  <div className={styles.workflowVisual}>
-                    <div className={styles.mockDocument}>
-                      <div className={styles.mockHeader}></div>
-                      <div className={styles.mockLine}></div>
-                      <div className={styles.mockLine}></div>
-                      <div className={styles.mockLineShort}></div>
-                    </div>
-                  </div>
-                  <div className={styles.workflowText}>
-                    <div className={styles.stepNumber}>01</div>
-                    <h3 className={styles.stepTitle}>Upload</h3>
-                    <p className={styles.stepDesc}>Upload your PDF or image securely. We handle the complex parsing.</p>
-                  </div>
+                  <div className={styles.stepNumber}>01</div>
+                  <h3 className={styles.stepTitle}>UPLOAD</h3>
+                  <p className={styles.stepDesc}>Drop in a PDF or image securely.</p>
                 </div>
-
                 <div className={styles.workflowStep}>
-                  <div className={styles.workflowVisual}>
-                    <div className={styles.mockAnalysis}>
-                      <Loader2 size={24} className={styles.spinnerPulse} />
-                      <div className={styles.mockLinesPulse}>
-                        <div className={styles.mockLine}></div>
-                        <div className={styles.mockLine}></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={styles.workflowText}>
-                    <div className={styles.stepNumber}>02</div>
-                    <h3 className={styles.stepTitle}>Analyze</h3>
-                    <p className={styles.stepDesc}>Text is extracted natively or via OCR, then analyzed for core concepts.</p>
-                  </div>
+                  <div className={styles.stepNumber}>02</div>
+                  <h3 className={styles.stepTitle}>EXTRACT</h3>
+                  <p className={styles.stepDesc}>Text is extracted natively via parsing or vision OCR.</p>
                 </div>
-
                 <div className={styles.workflowStep}>
-                  <div className={styles.workflowVisual}>
-                    <div className={styles.mockSummary}>
-                      <div className={styles.mockTag}>Key Points</div>
-                      <div className={styles.mockBullet}></div>
-                      <div className={styles.mockBullet}></div>
-                      <div className={styles.mockBullet}></div>
-                    </div>
-                  </div>
-                  <div className={styles.workflowText}>
-                    <div className={styles.stepNumber}>03</div>
-                    <h3 className={styles.stepTitle}>Understand</h3>
-                    <p className={styles.stepDesc}>Receive a structured, highly readable summary with key takeaways.</p>
-                  </div>
+                  <div className={styles.stepNumber}>03</div>
+                  <h3 className={styles.stepTitle}>SUMMARIZE</h3>
+                  <p className={styles.stepDesc}>The document is transformed into a structured summary.</p>
                 </div>
               </div>
+
+              {/* VISUAL PRODUCT PREVIEW */}
+              <div className={styles.visualPreviewContainer}>
+                <div className={styles.previewBoxLeft}>
+                   <div className={styles.previewDocMock}>
+                      <div className={styles.mockHeaderBlock}></div>
+                      <div className={styles.mockTextLine}></div>
+                      <div className={styles.mockTextLine}></div>
+                      <div className={styles.mockTextLine}></div>
+                      <div className={styles.mockTextLine}></div>
+                      <div className={styles.mockTextLineShort}></div>
+                   </div>
+                   <div className={styles.previewLabel}>document.pdf</div>
+                </div>
+                <div className={styles.previewBoxCenter}>
+                   <div className={styles.pulseNode}></div>
+                   <div className={styles.pulseLine}></div>
+                   <div className={styles.pulseNode}></div>
+                </div>
+                <div className={styles.previewBoxRight}>
+                   <div className={styles.previewSummaryMock}>
+                      <div className={styles.mockTitle}>Executive Summary</div>
+                      <div className={styles.mockTextLine}></div>
+                      <div className={styles.mockTextLine}></div>
+                      <div className={styles.mockTextLineShort}></div>
+                      <div className={styles.mockTag}>Key Takeaways</div>
+                      <div className={styles.mockListItem}><span>01</span><div className={styles.mockTextLine}></div></div>
+                      <div className={styles.mockListItem}><span>02</span><div className={styles.mockTextLine}></div></div>
+                   </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          {/* FINAL CTA */}
+          <section className={styles.ctaSection}>
+            <div className={styles.ctaContainer}>
+               <h2 className={styles.ctaTitle}>Have a document worth understanding?</h2>
+               <p className={styles.ctaSubtitle}>Upload it and get the important parts in seconds.</p>
+               <button className={styles.btnUploadLarge} onClick={onUploadClick}>
+                 Upload document
+               </button>
             </div>
           </section>
         </main>
@@ -335,7 +344,7 @@ export default function Home() {
               <FileCheck2 size={16} />
               <span>Document Summary Assistant</span>
             </div>
-            <p className={styles.footerText}>Turn documents into useful insights.</p>
+            <p className={styles.footerText}>© 2026 · Built with care by Aditya</p>
           </div>
         </footer>
       </div>
@@ -352,13 +361,14 @@ export default function Home() {
           <div className={styles.navContainer}>
             <div className={styles.navLogo}>
               <div className={styles.logoIcon}>
-                <FileCheck2 size={18} strokeWidth={2.5} />
+                <FileCheck2 size={20} strokeWidth={2} />
               </div>
               <span className={styles.logoText}>Document Summary Assistant</span>
             </div>
             <div className={styles.navRight}>
               <button onClick={handleRemove} className={styles.btnNavCancel}>
-                Cancel
+                <span className={styles.desktopText}>Cancel process</span>
+                <span className={styles.mobileText}>Cancel</span>
               </button>
             </div>
           </div>
@@ -421,20 +431,20 @@ export default function Home() {
             ) : (
               <div className={styles.processingSection}>
                 <div className={styles.processingHeader}>
-                  <Loader2 size={20} className={styles.spinnerPrimary} />
+                  <Loader2 size={24} className={styles.spinnerPrimary} strokeWidth={2} />
                   <h3>Processing Document</h3>
                 </div>
                 <div className={styles.processingList}>
                   <div className={`${styles.processingItem} ${status === "reading" ? styles.active : (status === "extracting" || status === "generating" ? styles.done : "")}`}>
-                    {status === "reading" ? <Circle size={16} className={styles.indicatorActive} /> : <CheckCircle2 size={16} className={styles.indicatorDone} />}
-                    <span>Reading your document...</span>
+                    {status === "reading" ? <Circle size={18} className={styles.indicatorActive} /> : <CheckCircle2 size={18} className={styles.indicatorDone} />}
+                    <span>Reading document...</span>
                   </div>
                   <div className={`${styles.processingItem} ${status === "extracting" ? styles.active : (status === "generating" ? styles.done : styles.pending)}`}>
-                    {status === "extracting" ? <Circle size={16} className={styles.indicatorActive} /> : (status === "generating" ? <CheckCircle2 size={16} className={styles.indicatorDone} /> : <Circle size={16} className={styles.indicatorPending} />)}
+                    {status === "extracting" ? <Circle size={18} className={styles.indicatorActive} /> : (status === "generating" ? <CheckCircle2 size={18} className={styles.indicatorDone} /> : <Circle size={18} className={styles.indicatorPending} />)}
                     <span>Extracting text via parsing & OCR...</span>
                   </div>
                   <div className={`${styles.processingItem} ${status === "generating" ? styles.active : styles.pending}`}>
-                    {status === "generating" ? <Circle size={16} className={styles.indicatorActive} /> : <Circle size={16} className={styles.indicatorPending} />}
+                    {status === "generating" ? <Circle size={18} className={styles.indicatorActive} /> : <Circle size={18} className={styles.indicatorPending} />}
                     <span>Generating structured insights...</span>
                   </div>
                 </div>
@@ -461,13 +471,14 @@ export default function Home() {
         <div className={styles.navContainer}>
           <div className={styles.navLogo}>
             <div className={styles.logoIcon}>
-              <FileCheck2 size={18} strokeWidth={2.5} />
+              <FileCheck2 size={20} strokeWidth={2} />
             </div>
             <span className={styles.logoText}>Document Summary Assistant</span>
           </div>
           <div className={styles.navRight}>
              <button onClick={handleRemove} className={styles.btnNavOutline}>
-                Process another document
+                <span className={styles.desktopText}>Process another</span>
+                <span className={styles.mobileText}>New</span>
              </button>
           </div>
         </div>
@@ -479,7 +490,7 @@ export default function Home() {
           <div className={styles.resultsHeader}>
             <div className={styles.documentBadge}>
                {getFileIcon(file.type, 16)}
-               <span>{file.name}</span>
+               <span className={styles.truncateText}>{file.name}</span>
             </div>
             
             <div className={styles.resultsActions}>
@@ -494,12 +505,14 @@ export default function Home() {
                     </button>
                   ))}
                </div>
-               <button onClick={handleProcess} className={styles.btnActionSecondary}>
-                  <RefreshCw size={14} /> Regenerate
-               </button>
-               <button onClick={copyToClipboard} className={styles.btnActionPrimary}>
-                  {copied ? <><Check size={14} /> Copied</> : <><Copy size={14} /> Copy</>}
-               </button>
+               <div className={styles.buttonGroup}>
+                 <button onClick={handleProcess} className={styles.btnActionSecondary}>
+                    <RefreshCw size={14} /> <span className={styles.actionText}>Regenerate</span>
+                 </button>
+                 <button onClick={copyToClipboard} className={styles.btnActionPrimary}>
+                    {copied ? <><Check size={14} /> <span className={styles.actionText}>Copied</span></> : <><Copy size={14} /> <span className={styles.actionText}>Copy</span></>}
+                 </button>
+               </div>
             </div>
           </div>
 
@@ -511,28 +524,8 @@ export default function Home() {
                   {result?.summary}
                 </div>
               </article>
-            </div>
-            
-            <aside className={styles.sidebarColumn}>
-              <div className={styles.sidebarBox}>
-                <h3 className={styles.sidebarBoxTitle}>Document Details</h3>
-                <ul className={styles.metaList}>
-                  <li>
-                    <span className={styles.metaLabel}>File</span>
-                    <span className={styles.metaValue} title={file.name}>{file.name.length > 22 ? file.name.substring(0, 22) + '...' : file.name}</span>
-                  </li>
-                  <li>
-                    <span className={styles.metaLabel}>Type</span>
-                    <span className={styles.metaValue}>{file.type.includes("pdf") ? "PDF Document" : "Image"}</span>
-                  </li>
-                  <li>
-                    <span className={styles.metaLabel}>Size</span>
-                    <span className={styles.metaValue}>{formatFileSize(file.size)}</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className={styles.sidebarBoxTransparent}>
+              
+              <div className={styles.mobileKeyTakeaways}>
                 <h3 className={styles.sidebarBoxTitle}>Key Takeaways</h3>
                 <div className={styles.takeawaysList}>
                   {result?.keyPoints.map((point, i) => (
@@ -543,11 +536,53 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+            </div>
+            
+            <aside className={styles.sidebarColumn}>
+              <div className={styles.desktopKeyTakeaways}>
+                <h3 className={styles.sidebarBoxTitle}>Key Takeaways</h3>
+                <div className={styles.takeawaysList}>
+                  {result?.keyPoints.map((point, i) => (
+                    <div key={i} className={styles.takeawayBlock}>
+                      <div className={styles.takeawayNum}>0{i + 1}</div>
+                      <div className={styles.takeawayBody}>{point}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={styles.sidebarBox}>
+                <h3 className={styles.sidebarBoxTitle}>Document Details</h3>
+                <ul className={styles.metaList}>
+                  <li>
+                    <span className={styles.metaLabel}>File</span>
+                    <span className={styles.metaValue} title={file.name}>{file.name.length > 20 ? file.name.substring(0, 20) + '...' : file.name}</span>
+                  </li>
+                  <li>
+                    <span className={styles.metaLabel}>Type</span>
+                    <span className={styles.metaValue}>{file.type.includes("pdf") ? "PDF" : "Image"}</span>
+                  </li>
+                  <li>
+                    <span className={styles.metaLabel}>Size</span>
+                    <span className={styles.metaValue}>{formatFileSize(file.size)}</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className={styles.mobileBottomAction}>
+                 <button onClick={handleRemove} className={styles.btnFullWidthOutline}>
+                    Process another document
+                 </button>
+              </div>
             </aside>
           </div>
           
         </div>
       </main>
+
+      <footer className={styles.minimalFooter}>
+         <p>Built with care by Aditya</p>
+      </footer>
     </div>
   );
 }
