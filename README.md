@@ -1,6 +1,6 @@
 # Document Summary Assistant
 
-🚀 **Live Demo:** [https://document-summary-assistant.vercel.app](https://document-summary-assistant.vercel.app)
+🚀 **Live Demo:** [https://document-summary-assistant-delta-ochre.vercel.app/](https://document-summary-assistant-delta-ochre.vercel.app/)
 
 ## Overview
 A web application designed to help users quickly extract text and generate structured summaries from document files (PDFs) and scanned images (JPG, PNG, WebP). The application allows for selectable summary lengths and highlights key points automatically.
