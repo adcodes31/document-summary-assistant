@@ -7,6 +7,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Document Summary Assistant",
   description: "Extract text and generate intelligent summaries from PDFs and images.",
+  icons: {
+    icon: "/icon.svg?v=2",
+    apple: "/apple-icon.svg?v=2",
+  }
 };
 
 export default function RootLayout({
